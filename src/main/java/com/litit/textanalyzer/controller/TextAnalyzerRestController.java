@@ -9,9 +9,11 @@ import com.litit.textanalyzer.service.AdvancedTextAnalyzer;
 import com.litit.textanalyzer.service.model.CharacterOccurrences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -22,7 +24,9 @@ public class TextAnalyzerRestController {
     private final AdvancedTextAnalyzer advancedTextAnalyzer;
     private final CharacterOccurrenceMapper characterOccurrenceMapper;
 
-    public TextAnalyzerRestController(AdvancedTextAnalyzer advancedTextAnalyzer, CharacterOccurrenceMapper characterOccurrenceMapper) {
+    public TextAnalyzerRestController(
+            AdvancedTextAnalyzer advancedTextAnalyzer,
+            CharacterOccurrenceMapper characterOccurrenceMapper) {
         this.advancedTextAnalyzer = advancedTextAnalyzer;
         this.characterOccurrenceMapper = characterOccurrenceMapper;
     }
@@ -42,13 +46,4 @@ public class TextAnalyzerRestController {
 
         return responseDto;
     }
-
-    @GetMapping("/services")
-    public List<Integer> getServices(@RequestParam int systemVersion) {
-
-        log.info("GET .getServices: systemVersion: " + systemVersion);
-        return Arrays.asList(1, 2, 3);
-    }
-
-
 }
